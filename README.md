@@ -1,7 +1,23 @@
 # k-count
 An application to count daily calorie consumption. Users add the foods they eat. The application displays the daily breakdown of calories, fat, carbohydrates, and protein consumed. 
 
+## Screen Sketches
+**Main Screen**
+![Main Screen](resources/img/main-sketch.jpg)
+
+**Menu**
+![Menu Display](resources/img/menu-sketch.jpg)
+
+**Meal Screen**
+![Meal Screen](resources/img/meal-sketch.jpg)
+
+**Ingredient Screen**
+![Ingredient Screen](resources/img/ingredient-sketch.jpg)
+
+**Dish Screen**
+![Dish Screen](resources/img/dish-sketch.jpg)
 ## Business Rules
+* On opening the application, display the daily calorie table if one exists. If not display a message to create one for the day or update an existing date
 * Display a table of the breakdown of daily calories, fats, carbs and protein
     * Each row contains an item showing the time of consumption, calories, fats, carbs and protein
     * Bottom of the table will display the percentage of fats, carbs and protein
