@@ -1,3 +1,10 @@
+.meal-tbl {
+    margin: 0px 75px;
+}
+.btn-center {
+    margin: auto;
+    width: 15%;
+}
 caption {
     caption-side: top;
     font-weight: 600;
