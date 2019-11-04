@@ -1,0 +1,25 @@
+caption {
+    caption-side: top;
+    font-weight: 600;
+    color: #212529;
+}
+
+.totals {
+    border-top: 3px solid #dee2e6;
+    border-bottom: 3px solid #dee2e6;
+}
+
+.percents {
+    padding-left: 10px;
+    /*border-left:3px solid #dee2e6;
+    border-right: 3px solid #dee2e6;*/
+    border-bottom: 3px solid #dee2e6;
+}
+
+.footer-left {
+    border-left:3px solid #dee2e6;
+}
+
+.footer-right {
+    border-right:3px solid #dee2e6;
+}
