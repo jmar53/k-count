@@ -1,6 +1,21 @@
 .center {
     margin: auto;
-    width: 40%;
+    width: 90%;
+    text-align: center;
+    /*border: 3px solid green;
+    padding: 10px;*/
+}
+.align-dish-row1 {
+    margin-left: 225px;
+    width: 80%;
+}
+.align-dish-row2 {
+    margin-left: 400px;
+    width: 80%;
+}
+.align-ingredient {
+    margin-left: 300px;
+    width: 80%;
 }
 .side-marg {
     margin: 0px 75px;
