@@ -1,4 +1,8 @@
-.meal-tbl {
+.center {
+    margin: auto;
+    width: 40%;
+}
+.side-marg {
     margin: 0px 75px;
 }
 .btn-center {
