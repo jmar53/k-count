@@ -27,8 +27,56 @@
                     </div>
                 </li>
             </ul>
-        </div>        
+        </div>
     </nav>
+
+    <br><br>
+    <div class="side-marg">
+        <table id="meals" class="table table-sm">
+            <caption>Mon Nov 4</caption>
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Meal</th>
+                    <th scope="col">Cals</th>
+                    <th scope="col">Fat</th>
+                    <th scope="col">Carbs</th>
+                    <th scope="col">Protein</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">08:30</th>
+                    <td>Bacon & Eggs</td>
+                    <td>285</td>
+                    <td>33.5</td>
+                    <td>80.4</td>
+                    <td>38.7</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="totals">
+                    <th scope="row">Totals</th>
+                    <td></td>
+                    <td>1043</td>
+                    <td>73.4</td>
+                    <td>208.3</td>
+                    <td>128.7</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td class="percents footer-left">20%</td>
+                    <td class="percents">35%</td>
+                    <td class="percents footer-right">45%</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div id="add-meal" class="btn-center">
+        <button class="btn btn-dark">Add Meal</button>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -41,6 +89,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="./resources/js/table.js"></script>
 </body>
 
 </html>
