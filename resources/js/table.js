@@ -29,7 +29,6 @@ window.onload = function () {
         datalist.setAttribute('id', 'mealsList');
         for(i=0;i<meals.meals.length;i++) {
             var option = document.createElement('option');
-            console.log(meals.meals[i].name);
             option.setAttribute('value', meals.meals[i].name);
             datalist.appendChild(option);
         };
