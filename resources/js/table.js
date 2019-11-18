@@ -8,13 +8,6 @@ window.onload = function () {
 
         return meals;
     }
-    function fillMealSelect() {
-        var select = document.createElement('SELECT');
-        var option = document.createElement('option');
-        option.text = 'Some Meal';
-        select.appendChild(option);
-        return select;
-    }
 
     function addRow() {
         var table = document.getElementById("meals");
@@ -29,14 +22,18 @@ window.onload = function () {
         var jsonStr = getMeals();
         var meals = JSON.parse(jsonStr);
         var cell2 = document.createElement("TD");
-        var sel2 = document.createElement('select');
-        
+        var input = document.createElement('input');
+        input.setAttribute('list', 'mealsList');
+        cell2.appendChild(input);
+        var datalist = document.createElement('datalist');
+        datalist.setAttribute('id', 'mealsList');
         for(i=0;i<meals.meals.length;i++) {
-            var opt2 = document.createElement('option');
-            opt2.text = meals.meals[i].name;
-            sel2.appendChild(opt2);
-            cell2.appendChild(sel2);
+            var option = document.createElement('option');
+            console.log(meals.meals[i].name);
+            option.setAttribute('value', meals.meals[i].name);
+            datalist.appendChild(option);
         };
+        cell2.appendChild(datalist);
         row.appendChild(cell2);
 
         var cell3 = document.createElement("TD");
