@@ -1,0 +1,25 @@
+{
+  "name": "k-count",
+  "version": "1.0.0",
+  "description": "An application to count daily calorie consumption. Users add the foods they eat. The application displays the daily breakdown of calories, fat, carbohydrates, and protein consumed.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./resources/db/db.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmar53/k-count.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmar53/k-count/issues"
+  },
+  "homepage": "https://github.com/jmar53/k-count#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.3.4"
+  }
+}
