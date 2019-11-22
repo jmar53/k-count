@@ -11,7 +11,7 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
   //res.render('index', {superheroes: superheroes})
   //res.send('Hello');
-  res.render('index');
+  res.render('meals');
 })
 
 app.get('/ingredient', (req, res) => {
@@ -20,7 +20,8 @@ app.get('/ingredient', (req, res) => {
 })
 
 app.get('/dish', (req, res) => {
-  res.send('Dish');
+  //res.send('Dish');
+  res.render('dish');
 })
 
 app.listen(port, () => {
