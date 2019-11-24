@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const dishSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        auto: true
+    },
     name: {
         type: String,
         minlength: 1,

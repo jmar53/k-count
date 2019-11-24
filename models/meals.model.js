@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const mealSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        auto: true
+    },
     date: {
         type: Date,
         required: [true, 'Please enter date of meal']
