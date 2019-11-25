@@ -1,16 +1,17 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const IngredientModel = require('./models/ingredient.model');
 const DishModel = require('./models/dish.model');
 const MealModel = require('./models/meals.model');
-//const bodyParser = require('body-parser')
-const app = express()
-const port = 3000
-//const urlencodedParser = bodyParser.urlencoded({extended: false})
 
-app.set('view engine', 'pug')
-app.use(express.static('public'))
-//app.use(urlencodedParser)
+const app = express();
+const port = 3000;
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+
+app.set('view engine', 'pug');
+app.use(express.static('public'));
+app.use(urlencodedParser);
 
 //Set up default mongoose connection
 var mongoDB = 'mongodb://127.0.0.1/nutrition';
@@ -47,8 +48,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/ingredient', (req, res) => {
-  //res.send('Ingredient');
   res.render('ingredient');
+})
+
+app.post('/ingredient', urlencodedParser, (req, res) => {
+  const ingredientJSON = {
+    name: req.body.name,
+    per: req.body.amount,
+    cals: req.body.cals,
+    fat: req.body.fat,
+    carbs: req.body.carbs,
+    protein: req.body.protein
+  };
+  const newIngredient = new IngredientModel(ingredientJSON);
+  newIngredient.save(function (err) {
+    if (err) console.log(err);
+    // saved!
+  });
+
+  res.redirect('/ingredient')
 })
 
 app.get('/dish', (req, res) => {
