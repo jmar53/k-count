@@ -11,7 +11,8 @@ block content
         label(for='ingredient') Ingredient
         select(id='ingredient' name='name' class="form-control")
           option(selected) Choose...
-          option ...
+          each ingredient in ingredients
+            option(per=ingredient.per cals=ingredient.cals fat=ingredient.fat.toString() carbs=ingredient.carbs.toString() protein=ingredient.protein.toString())=ingredient.name
       div(class="form-group col-md-1")
         label(for='amount') Amount
         input(type='text' id='amount' name='amount' class="form-control" placeholder=0)

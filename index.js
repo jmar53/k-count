@@ -70,11 +70,9 @@ app.post('/ingredient', urlencodedParser, (req, res) => {
 })
 
 app.get('/dish', (req, res) => {
-  //res.send('Dish');
-  /*IngredientModel.find({}).exec((err, ingredients) => {
-    res.json(ingredients);
-  });*/
-  res.render('dish');
+  IngredientModel.find({}).exec((err, ingredients) => {
+    res.render('dish', {ingredients: ingredients});
+  });
 })
 
 app.listen(port, () => {
