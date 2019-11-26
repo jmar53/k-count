@@ -9,25 +9,28 @@ block content
         input(type='text' id='name' name='name' class="form-control" placeholder='Name')
       div(class="form-group col-md-2")
         label(for='ingredient') Ingredient
-        select(id='ingredient' name='name' class="form-control")
+        select(id='ingredient' name='name' class="form-control" onchange='calculateValues()')
           option(selected) Choose...
           each ingredient in ingredients
-            option(per=ingredient.per cals=ingredient.cals fat=ingredient.fat.toString() carbs=ingredient.carbs.toString() protein=ingredient.protein.toString())=ingredient.name
+            option(per=ingredient.per cals=ingredient.cals fat=Number(ingredient.fat) carbs=Number(ingredient.carbs) protein=Number(ingredient.protein).toString())=ingredient.name
       div(class="form-group col-md-1")
         label(for='amount') Amount
-        input(type='text' id='amount' name='amount' class="form-control" placeholder=0)
+        input(type='text' id='amount' name='amount' class="form-control" onblur="calculateValues()" value=0)
       div(class="form-group col-md-1")
         label(for='cals') Calories
-        input(type='text' id='cals' name='cals' class="form-control" placeholder=0)
+        input(type='text' id='cals' name='cals' class="form-control" value=0)
       div(class="form-group col-md-1")
         label(for='fat') Fat
-        input(type='text' id='fat' name='fat' class="form-control" placeholder=0)
+        input(type='text' id='fat' name='fat' class="form-control" value=0)
       div(class="form-group col-md-1")
         label(for='carbs') Carbs
-        input(type='text' id='carbs' name='carbs' class="form-control" placeholder=0)
+        input(type='text' id='carbs' name='carbs' class="form-control" value=0)
       div(class="form-group col-md-1")
         label(for='protein') Protein
-        input(type='text' id='protein' name='protein' class="form-control" placeholder=0)
+        input(type='text' id='protein' name='protein' class="form-control" value=0)
     br
     div
       button(class="btn btn-dark") Add Dish
+
+block scripts
+  script(src="./js/dish.js")

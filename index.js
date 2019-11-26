@@ -63,7 +63,6 @@ app.post('/ingredient', urlencodedParser, (req, res) => {
   const newIngredient = new IngredientModel(ingredientJSON);
   newIngredient.save(function (err) {
     if (err) console.log(err);
-    // saved!
   });
 
   res.redirect('/ingredient')
