@@ -65,7 +65,7 @@ app.post('/ingredient', urlencodedParser, (req, res) => {
     if (err) console.log(err);
   });
 
-  res.redirect('/ingredient')
+  res.redirect('/ingredient');
 })
 
 app.get('/dish', (req, res) => {
@@ -75,13 +75,9 @@ app.get('/dish', (req, res) => {
 })
 
 app.post('/dish', urlencodedParser, (req, res) => {
-  //console.log(`Length: ${JSON.stringify(req.body, null, 2)}`);
+  /*** If saving multiple ingredients to one dish name:
   let bodyArray = Object.values(req.body);
-  //console.log(bodyArray.length);
   let dishName = bodyArray.shift();
-  //console.log(dishName);
-  //console.log(bodyArray.length);
-  //console.log(Object.values(req.body));
 
   for(i=0;i<bodyArray.length;i+=6) {
     const dishJSON = {
@@ -95,6 +91,21 @@ app.post('/dish', urlencodedParser, (req, res) => {
     }
     console.log(dishJSON)
   }
+  res.redirect('/dish');
+  ***/
+
+  const dishJSON = {
+    name: req.body.name,
+    cals: req.body.calsTotal,
+    fat: req.body.fatTotal,
+    carbs: req.body.carbsTotal,
+    protein: req.body.proteinTotal
+  };
+  const newDish = new DishModel(dishJSON);
+  newDish.save(function (err) {
+    if (err) console.log(err);
+  });
+
   res.redirect('/dish');
 })
 

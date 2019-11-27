@@ -10,19 +10,19 @@ const dishSchema = new mongoose.Schema({
         minlength: 1,
         required: [true, 'Please enter dish name']
     },
-    ingredient_name: {
+    /*ingredient_name: {
         type: String,
         minlength: 1,
         required: [true, 'Please enter ingredient name']
     },
-    /*per: {
+    per: {
         type: Number,
         required: [true, 'Please enter per amount']
-    },*/
+    },
     amount: {
         type: Number,
         required:[true, 'Please enter amount']
-    },
+    },*/
     cals: {
         type: Number,
         required:[true, 'Please enter calorie amount']
