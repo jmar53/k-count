@@ -3,34 +3,38 @@ extends ./layout.pug
 block content
   form(class="center")
     h2 Dish
-    div(class="form-row align-dish-row1")
-      div(class="form-group col-md-2")
-        label(for='name') Name
-        input(type='text' id='name' name='name' class="form-control" placeholder='Name')
-      div(class="form-group col-md-2")
-        label(for='ingredient') Ingredient
-        select(id='ingredient' name='name' class="form-control" onchange='calculateValues()')
-          option(selected) Choose...
-          each ingredient in ingredients
-            option(per=ingredient.per cals=ingredient.cals fat=Number(ingredient.fat) carbs=Number(ingredient.carbs) protein=Number(ingredient.protein).toString())=ingredient.name
-      div(class="form-group col-md-1")
-        label(for='amount') Amount
-        input(type='text' id='amount' name='amount' class="form-control" onblur="calculateValues()" value=0)
-      div(class="form-group col-md-1")
-        label(for='cals') Calories
-        input(type='text' id='cals' name='cals' class="form-control" value=0)
-      div(class="form-group col-md-1")
-        label(for='fat') Fat
-        input(type='text' id='fat' name='fat' class="form-control" value=0)
-      div(class="form-group col-md-1")
-        label(for='carbs') Carbs
-        input(type='text' id='carbs' name='carbs' class="form-control" value=0)
-      div(class="form-group col-md-1")
-        label(for='protein') Protein
-        input(type='text' id='protein' name='protein' class="form-control" value=0)
+    div(id="container")
+      div(class="form-row align-dish-row1")
+        div(class="form-group col-md-2")
+          label(for='name') Name
+          input(type='text' id='name' name='name' class="form-control" placeholder='Name')
+        div(class="form-group col-md-2")
+          label(for='ingredient0') Ingredient
+          select(id='ingredient0' name='ingredient0' class="form-control" onchange='calculateValues(0)')
+            option(selected) Choose...
+            each ingredient in ingredients
+              option(per=ingredient.per cals=ingredient.cals fat=Number(ingredient.fat) carbs=Number(ingredient.carbs) protein=Number(ingredient.protein).toString())=ingredient.name
+        div(class="form-group col-md-1")
+          label(for='amount0') Amount
+          input(type='text' id='amount0' name='amount0' class="form-control" onblur="calculateValues(0)" value=0)
+        div(class="form-group col-md-1")
+          label(for='cals0') Calories
+          input(type='text' id='cals0' name='cals0' class="form-control" value=0)
+        div(class="form-group col-md-1")
+          label(for='fat0') Fat
+          input(type='text' id='fat0' name='fat0' class="form-control" value=0)
+        div(class="form-group col-md-1")
+          label(for='carbs0') Carbs
+          input(type='text' id='carbs0' name='carbs0' class="form-control" value=0)
+        div(class="form-group col-md-1")
+          label(for='protein0') Protein
+          input(type='text' id='protein0' name='protein0' class="form-control" value=0)
     br
     div
-      button(class="btn btn-dark") Add Dish
+      button(class="btn btn-dark" type="button" onclick="addRow()") Add Dish
+    br
+    div
+      button(class="btn btn-dark") Add Meal
 
 block scripts
   script(src="./js/dish.js")
