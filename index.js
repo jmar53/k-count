@@ -74,6 +74,30 @@ app.get('/dish', (req, res) => {
   });
 })
 
+app.post('/dish', urlencodedParser, (req, res) => {
+  //console.log(`Length: ${JSON.stringify(req.body, null, 2)}`);
+  let bodyArray = Object.values(req.body);
+  //console.log(bodyArray.length);
+  let dishName = bodyArray.shift();
+  //console.log(dishName);
+  //console.log(bodyArray.length);
+  //console.log(Object.values(req.body));
+
+  for(i=0;i<bodyArray.length;i+=6) {
+    const dishJSON = {
+      name: dishName,
+      ingredient_name: bodyArray[i],
+      amount: bodyArray[i+1],
+      cals: bodyArray[i+2],
+      fat: bodyArray[i+3],
+      carbs: bodyArray[i+4],
+      protein: bodyArray[i+5]
+    }
+    console.log(dishJSON)
+  }
+  res.redirect('/dish');
+})
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
 })

@@ -1,7 +1,7 @@
 extends ./layout.pug
 
 block content
-  form(class="center")
+  form(class="center" action="/dish" method="post")
     h2 Dish
     div(id="container")
       div(class="form-row align-dish-row1")
@@ -29,6 +29,12 @@ block content
         div(class="form-group col-md-1")
           label(for='protein0') Protein
           input(type='text' id='protein0' name='protein0' class="form-control" value=0)
+    div(id="totals")
+      label Totals:
+      input(type='text' id='calsTotal' name='calsTotal' value=0)
+      input(type='text' id='fatTotal' name='fatTotal' value=0)
+      input(type='text' id='carbsTotal' name='carbsTotal' value=0)
+      input(type='text' id='proteinTotal' name='proteinTotal' value=0)
     br
     div
       button(class="btn btn-dark" type="button" onclick="addRow()") Add Dish

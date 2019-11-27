@@ -15,10 +15,10 @@ const dishSchema = new mongoose.Schema({
         minlength: 1,
         required: [true, 'Please enter ingredient name']
     },
-    per: {
+    /*per: {
         type: Number,
         required: [true, 'Please enter per amount']
-    },
+    },*/
     amount: {
         type: Number,
         required:[true, 'Please enter amount']
