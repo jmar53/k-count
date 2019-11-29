@@ -23,9 +23,9 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.get('/', (req, res) => {
-  //res.render('index', {superheroes: superheroes})
-  //res.send('Hello');
-  res.render('meals');
+  MealModel.find({}).exec((err, meals) => {
+    res.render('meals', {meals: meals});
+  });
 
   /*//Create object to store values from ingredient page then save them
   var ingredient = new IngredientModel({name: 'Test6', per: 100.4, cals: 87.3, fat: 3.5, carbs: 44.7, protein: 22.3});

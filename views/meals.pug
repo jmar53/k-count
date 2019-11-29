@@ -12,29 +12,30 @@ block content
           th(scope="col") Fat
           th(scope="col") Carbs
           th(scope="col") Protein
-        tbody
+      tbody
+        each meal in meals
           tr
-            th(scope="row") 08:30
-            td Bacon & Eggs
-            td 285
-            td 33.5
-            td 80.4
-            td 38.7
-        tfoot
-          tr(class="totals")
-            th(scope="row") Totals
-              td
-              td 1043
-              td 73.4
-              td 208.3
-              td 128.7
-          tr
-            th(scope="row")
+            th(scope="row")=meal.time
+            td=meal.name
+            td=meal.cals
+            td=meal.fat
+            td=meal.carbs
+            td=meal.protein
+      tfoot
+        tr(class="totals")
+          th(scope="row") Totals
             td
-            td
-            td(class="percents footer-left") 20%
-            td(class="percents") 35%
-            td(class="percents footer-right") 45%
+            td 1043
+            td 73.4
+            td 208.3
+            td 128.7
+        tr
+          th(scope="row")
+          td
+          td
+          td(class="percents footer-left") 20%
+          td(class="percents") 35%
+          td(class="percents footer-right") 45%
   div(id="add-meal" class="btn-center")
     button(class="btn btn-dark") Add Meal
 
