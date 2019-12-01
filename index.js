@@ -6,8 +6,8 @@ const DishModel = require('./models/dish.model');
 const MealModel = require('./models/meals.model');
 
 const app = express();
-const port = 3000;
-const urlencodedParser = bodyParser.urlencoded({extended: false});
+const port = 3002;
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.set('view engine', 'pug');
 app.use(express.static('public'));
@@ -24,27 +24,28 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.get('/', (req, res) => {
   MealModel.find({}).exec((err, meals) => {
-    res.render('meals', {meals: meals});
+    res.render('meals', { meals: meals });
   });
+})
 
-  /*//Create object to store values from ingredient page then save them
-  var ingredient = new IngredientModel({name: 'Test6', per: 100.4, cals: 87.3, fat: 3.5, carbs: 44.7, protein: 22.3});
-  ingredient.save(function (err) {
-    if (err) console.log(err);
-    // saved!
-    IngredientModel.find({}).exec((err, ingredients) => {
-      res.json(ingredients);
-    });
-  });*/
+app.post('/', urlencodedParser, (req, res) => {
+  // Build the JSON of added meals
+  let newMeals = [];
 
-  /*//Use create method passing the values from ingredient page
-  IngredientModel.create({name: 'Test2', per: 100, cals: 87, fat: 3, carbs: 44, protein: 22}, function (err, ingredient) {
-    if (err) console.log(err);
-    // saved!
-    IngredientModel.find({}).exec((err, ingredients) => {
-      res.json(ingredients);
-    });
-  });*/
+  const date = 'Fri Nov 29';
+  const time = '12:20';
+
+  if(typeof(req.body.name) === 'string') {
+    newMeals[0] = { date: date, time: time, name: req.body.name, cals: req.body.cals, fat: req.body.fat, carbs: req.body.carbs, protein: req.body.protein };
+  } else {
+    for(i=0;i<req.body.name.length;i++) {
+      newMeals[i] = { date: date, time: time, name: req.body.name[i], cals: req.body.cals[i], fat: req.body.fat[i], carbs: req.body.carbs[i], protein: req.body.protein[i] };
+    }
+  }
+  
+  MealModel.insertMany(newMeals, function (err) {
+    res.redirect('/');
+  });
 })
 
 app.get('/ingredient', (req, res) => {
@@ -70,7 +71,7 @@ app.post('/ingredient', urlencodedParser, (req, res) => {
 
 app.get('/dish', (req, res) => {
   IngredientModel.find({}).exec((err, ingredients) => {
-    res.render('dish', {ingredients: ingredients});
+    res.render('dish', { ingredients: ingredients });
   });
 })
 

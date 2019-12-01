@@ -1,43 +1,47 @@
 extends ./layout.pug
 
 block content
-  div(class="side-marg")
-    table(id="meals" class="table table-sm")
-      caption Mon Nov 4
-      thead
-        tr
-          th(scope="col")
-          th(scope="col") Meal
-          th(scope="col") Cals
-          th(scope="col") Fat
-          th(scope="col") Carbs
-          th(scope="col") Protein
-      tbody
-        each meal in meals
+  form(action="/" method="post")
+    div(class="side-marg")
+      table(id="meals" class="table table-sm")
+        caption Mon Nov 4
+        thead
           tr
-            th(scope="row")=meal.time
-            td=meal.name
-            td=meal.cals
-            td=meal.fat
-            td=meal.carbs
-            td=meal.protein
-      tfoot
-        tr(class="totals")
-          th(scope="row") Totals
+            th(scope="col")
+            th(scope="col") Meal
+            th(scope="col") Cals
+            th(scope="col") Fat
+            th(scope="col") Carbs
+            th(scope="col") Protein
+        tbody
+          each meal in meals
+            tr(_id=meal._id)
+              th(scope="row")=meal.time
+              td=meal.name
+              td=meal.cals
+              td=meal.fat
+              td=meal.carbs
+              td=meal.protein
+        tfoot
+          tr(class="totals")
+            th(scope="row") Totals
+              td
+              td 1043
+              td 73.4
+              td 208.3
+              td 128.7
+          tr
+            th(scope="row")
             td
-            td 1043
-            td 73.4
-            td 208.3
-            td 128.7
-        tr
-          th(scope="row")
-          td
-          td
-          td(class="percents footer-left") 20%
-          td(class="percents") 35%
-          td(class="percents footer-right") 45%
-  div(id="add-meal" class="btn-center")
-    button(class="btn btn-dark") Add Meal
+            td
+            td(class="percents footer-left") 20%
+            td(class="percents") 35%
+            td(class="percents footer-right") 45%
+    div(class="btn-center")
+      button(id="add-meal" class="btn btn-dark" type="button") Add Meal
+    br
+    div(class="btn-center")
+      button(class="btn btn-dark") Save Meals
 
 block scripts
   script(src="./js/table.js")

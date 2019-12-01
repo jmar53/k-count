@@ -23,6 +23,7 @@ window.onload = function () {
         var meals = JSON.parse(jsonStr);
         var cell2 = document.createElement("TD");
         var input = document.createElement('input');
+        input.setAttribute('name', 'name');
         input.setAttribute('list', 'mealsList');
         cell2.appendChild(input);
         var datalist = document.createElement('datalist');
@@ -37,6 +38,7 @@ window.onload = function () {
 
         var cell3 = document.createElement("TD");
         var inp3 = document.createElement('INPUT');
+        inp3.setAttribute('name', 'cals');
         inp3.setAttribute('type', 'text');
         inp3.setAttribute('value', '0.0');
         inp3.setAttribute('size', '2');
@@ -44,6 +46,7 @@ window.onload = function () {
         row.appendChild(cell3);
         var cell4 = document.createElement("TD");
         var inp4 = document.createElement('INPUT');
+        inp4.setAttribute('name', 'fat');
         inp4.setAttribute('type', 'text');
         inp4.setAttribute('value', '0.0');
         inp4.setAttribute('size', '2');
@@ -51,6 +54,7 @@ window.onload = function () {
         row.appendChild(cell4);
         var cell5 = document.createElement("TD");
         var inp5 = document.createElement('INPUT');
+        inp5.setAttribute('name', 'carbs');
         inp5.setAttribute('type', 'text');
         inp5.setAttribute('value', '0.0');
         inp5.setAttribute('size', '2');
@@ -58,6 +62,7 @@ window.onload = function () {
         row.appendChild(cell5);
         var cell6 = document.createElement("TD");
         var inp6 = document.createElement('INPUT');
+        inp6.setAttribute('name', 'protein');
         inp6.setAttribute('type', 'text');
         inp6.setAttribute('value', '0.0');
         inp6.setAttribute('size', '2');
