@@ -22,9 +22,15 @@ var db = mongoose.connection;
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+let date = new Date();
+date.setHours(0);
+date.setMinutes(0);
+date.setSeconds(0);
+
 app.get('/', (req, res) => {
-  MealModel.find({}).exec((err, meals) => {
-    res.render('meals', { meals: meals });
+  MealModel.find({}).where('date').equals(date).exec((err, meals) => {
+    console.log(date.getMilliseconds());
+    res.render('meals', { date: date.toDateString(), meals: meals });
   });
 })
 
@@ -32,20 +38,22 @@ app.post('/', urlencodedParser, (req, res) => {
   // Build the JSON of added meals
   let newMeals = [];
 
-  const date = 'Fri Nov 29';
   const time = '12:20';
 
-  if(typeof(req.body.name) === 'string') {
-    newMeals[0] = { date: date, time: time, name: req.body.name, cals: req.body.cals, fat: req.body.fat, carbs: req.body.carbs, protein: req.body.protein };
-  } else {
-    for(i=0;i<req.body.name.length;i++) {
-      newMeals[i] = { date: date, time: time, name: req.body.name[i], cals: req.body.cals[i], fat: req.body.fat[i], carbs: req.body.carbs[i], protein: req.body.protein[i] };
+  if (req.body.name !== undefined) {
+    if (typeof (req.body.name) === 'string') {
+      newMeals[0] = { date: date, time: time, name: req.body.name, cals: req.body.cals, fat: req.body.fat, carbs: req.body.carbs, protein: req.body.protein };
+    } else {
+      for (i = 0; i < req.body.name.length; i++) {
+        newMeals[i] = { date: date, time: time, name: req.body.name[i], cals: req.body.cals[i], fat: req.body.fat[i], carbs: req.body.carbs[i], protein: req.body.protein[i] };
+      }
     }
+
+    MealModel.insertMany(newMeals, function (err) {
+      //res.redirect('/');
+    });
   }
-  
-  MealModel.insertMany(newMeals, function (err) {
-    res.redirect('/');
-  });
+  res.redirect('/');
 })
 
 app.get('/ingredient', (req, res) => {
