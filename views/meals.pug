@@ -13,7 +13,7 @@ block content
             th(scope="col") Fat
             th(scope="col") Carbs
             th(scope="col") Protein
-        tbody
+        tbody(id="container")
           each meal in meals
             tr(_id=meal._id)
               th(scope="row")=meal.time
@@ -26,17 +26,17 @@ block content
           tr(class="totals")
             th(scope="row") Totals
               td
-              td 1043
-              td 73.4
-              td 208.3
-              td 128.7
+              td(id="calsTotal") 0
+              td(id="fatTotal") 0
+              td(id="carbsTotal") 0
+              td(id="proteinTotal") 0
           tr
             th(scope="row")
             td
             td
-            td(class="percents footer-left") 20%
-            td(class="percents") 35%
-            td(class="percents footer-right") 45%
+            td(class="percents footer-left" id="fatPercent") 0%
+            td(class="percents" id="carbsPercent") 0%
+            td(class="percents footer-right" id="proteinPercent") 0%
     div(class="btn-center")
       button(id="add-meal" class="btn btn-dark" type="button") Add Meal
     br

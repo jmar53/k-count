@@ -9,10 +9,29 @@ window.onload = function () {
         return meals;
     }
 
+    function calculateTotals() {
+        let rows = document.getElementById('container');
+        let calsTotal = 0;
+        let fatTotal = 0;
+        let carbsTotal = 0;
+        let proteinTotal = 0;
+        console.log(rows.children.length);
+        for(i=0;i<rows.children.length;i++) {
+            console.log(rows.children[i].children[2].children[0].value);
+            calsTotal += Number(rows.children[i].children[2].children[0].value);
+            fatTotal += Number(rows.children[i].children[3].children[0].value);
+            carbsTotal += Number(rows.children[i].children[4].children[0].value);
+            proteinTotal += Number(rows.children[i].children[5].children[0].value);
+        }
+        document.getElementById('calsTotal').innerHTML = calsTotal;
+        document.getElementById('fatTotal').innerHTML = fatTotal;
+        document.getElementById('carbsTotal').innerHTML = carbsTotal;
+        document.getElementById('proteinTotal').innerHTML = proteinTotal;
+    }
+
     function addRow() {
-        var table = document.getElementById("meals");
-        var rowIndex = table.rows.length - 2;
-        var row = table.insertRow(rowIndex);
+        let container = document.getElementById("container");
+        let row = document.createElement('tr');
 
         var headerCell = document.createElement("TH");
         headerCell.innerHTML = "19:00";
@@ -68,6 +87,8 @@ window.onload = function () {
         inp6.setAttribute('size', '2');
         cell6.appendChild(inp6);
         row.appendChild(cell6);
+        container.appendChild(row);
+        calculateTotals();
     }
 
     document.getElementById("add-meal").addEventListener("click", addRow);

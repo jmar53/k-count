@@ -14,9 +14,9 @@ app.use(express.static('public'));
 app.use(urlencodedParser);
 
 var mongoDB = 'mongodb://127.0.0.1/nutrition';
-//const user = process.env.USER;
-//const pword = process.env.PWORD;
-//let mongoDB = `mongodb+srv://${user}:${pword}@cluster0-stxlu.mongodb.net/nutrition?retryWrites=true&w=majority`;
+//const dbUser = process.env.DBUSER;
+//const dbPword = process.env.DBPWORD;
+//let mongoDB = `mongodb+srv://${dbUser}:${dbPword}@cluster0-stxlu.mongodb.net/nutrition?retryWrites=true&w=majority`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -25,6 +25,7 @@ let date = new Date();
 date.setHours(0);
 date.setMinutes(0);
 date.setSeconds(0);
+date.setMilliseconds(0);
 
 app.get('/', (req, res) => {
   MealModel.find({}).where('date').equals(date).exec((err, meals) => {
