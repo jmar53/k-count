@@ -15,9 +15,7 @@ window.onload = function () {
         let fatTotal = 0;
         let carbsTotal = 0;
         let proteinTotal = 0;
-        console.log(rows.children.length);
         for(i=0;i<rows.children.length;i++) {
-            console.log(rows.children[i].children[2].children[0].value);
             calsTotal += Number(rows.children[i].children[2].children[0].value);
             fatTotal += Number(rows.children[i].children[3].children[0].value);
             carbsTotal += Number(rows.children[i].children[4].children[0].value);
@@ -27,6 +25,21 @@ window.onload = function () {
         document.getElementById('fatTotal').innerHTML = fatTotal;
         document.getElementById('carbsTotal').innerHTML = carbsTotal;
         document.getElementById('proteinTotal').innerHTML = proteinTotal;
+
+        calculatePercents();
+    }
+
+    function calculatePercents() {
+        let fat = Number(document.getElementById('fatTotal').innerText);
+        let carbs = Number(document.getElementById('carbsTotal').innerText);
+        let protein = Number(document.getElementById('proteinTotal').innerText);
+        let fatPercent = (fat !== 0) ? fat * 9 / (fat * 9 + carbs * 4 + protein * 4) * 100 : 0 ;
+        let carbsPercent = (carbs !== 0) ? carbs * 4 / (fat * 9 + carbs * 4 + protein * 4) * 100 : 0;
+        let proteinPercent = (protein !== 0) ? protein * 4 / (fat * 9 + carbs * 4 + protein * 4) * 100 : 0;
+
+        document.getElementById('fatPercent').innerHTML = `${fatPercent.toFixed(0)}%`;
+        document.getElementById('carbsPercent').innerHTML = `${carbsPercent.toFixed(0)}%`;
+        document.getElementById(`proteinPercent`).innerHTML = `${proteinPercent.toFixed(0)}%`;
     }
 
     function addRow() {
