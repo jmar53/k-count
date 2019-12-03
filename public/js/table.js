@@ -15,11 +15,18 @@ window.onload = function () {
         let fatTotal = 0;
         let carbsTotal = 0;
         let proteinTotal = 0;
-        for(i=0;i<rows.children.length;i++) {
-            calsTotal += Number(rows.children[i].children[2].children[0].value);
-            fatTotal += Number(rows.children[i].children[3].children[0].value);
-            carbsTotal += Number(rows.children[i].children[4].children[0].value);
-            proteinTotal += Number(rows.children[i].children[5].children[0].value);
+        for (i = 0; i < rows.children.length; i++) {
+            if (Number(rows.children[i].getAttribute('_id')) !== -1) {
+                calsTotal += Number(rows.children[i].children[2].innerText);
+                fatTotal += Number(rows.children[i].children[3].innerText);
+                carbsTotal += Number(rows.children[i].children[4].innerText);
+                proteinTotal += Number(rows.children[i].children[5].innerText);
+            } else {
+                calsTotal += Number(rows.children[i].children[2].children[0].value);
+                fatTotal += Number(rows.children[i].children[3].children[0].value);
+                carbsTotal += Number(rows.children[i].children[4].children[0].value);
+                proteinTotal += Number(rows.children[i].children[5].children[0].value);
+            }
         }
         document.getElementById('calsTotal').innerHTML = calsTotal;
         document.getElementById('fatTotal').innerHTML = fatTotal;
@@ -33,7 +40,7 @@ window.onload = function () {
         let fat = Number(document.getElementById('fatTotal').innerText);
         let carbs = Number(document.getElementById('carbsTotal').innerText);
         let protein = Number(document.getElementById('proteinTotal').innerText);
-        let fatPercent = (fat !== 0) ? fat * 9 / (fat * 9 + carbs * 4 + protein * 4) * 100 : 0 ;
+        let fatPercent = (fat !== 0) ? fat * 9 / (fat * 9 + carbs * 4 + protein * 4) * 100 : 0;
         let carbsPercent = (carbs !== 0) ? carbs * 4 / (fat * 9 + carbs * 4 + protein * 4) * 100 : 0;
         let proteinPercent = (protein !== 0) ? protein * 4 / (fat * 9 + carbs * 4 + protein * 4) * 100 : 0;
 
@@ -45,6 +52,7 @@ window.onload = function () {
     function addRow() {
         let container = document.getElementById("container");
         let row = document.createElement('tr');
+        row.setAttribute('_id', -1);
 
         var headerCell = document.createElement("TH");
         headerCell.innerHTML = "19:00";
@@ -60,7 +68,7 @@ window.onload = function () {
         cell2.appendChild(input);
         var datalist = document.createElement('datalist');
         datalist.setAttribute('id', 'mealsList');
-        for(i=0;i<meals.meals.length;i++) {
+        for (i = 0; i < meals.meals.length; i++) {
             var option = document.createElement('option');
             option.setAttribute('value', meals.meals[i].name);
             datalist.appendChild(option);

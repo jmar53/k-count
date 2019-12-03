@@ -16,12 +16,12 @@ block content
         tbody(id="container")
           each meal in meals
             tr(_id=meal._id)
-              th(scope="row")=meal.time
-              td=meal.name
-              td=meal.cals
-              td=meal.fat
-              td=meal.carbs
-              td=meal.protein
+              th(scope="row" value=meal.time)=meal.time
+              td(value=meal.name)=meal.name
+              td(value=meal.cals)=meal.cals
+              td(value=meal.fat)=meal.fat
+              td(value=meal.carbs)=meal.carbs
+              td(value=meal.protein)=meal.protein
         tfoot
           tr(class="totals")
             th(scope="row") Totals

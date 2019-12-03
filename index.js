@@ -6,7 +6,7 @@ const DishModel = require('./models/dish.model');
 const MealModel = require('./models/meals.model');
 
 const app = express();
-const port = 3002;
+const port = 3003;
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.set('view engine', 'pug');
