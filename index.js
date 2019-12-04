@@ -28,8 +28,12 @@ date.setSeconds(0);
 date.setMilliseconds(0);
 
 app.get('/', (req, res) => {
+  let dishesArr = [];
+  DishModel.find({}).exec((err, dishes) => {
+    dishesArr = dishes;
+  });
   MealModel.find({}).where('date').equals(date).exec((err, meals) => {
-    res.render('meals', { date: date.toDateString(), meals: meals });
+    res.render('meals', { date: date.toDateString(), dishes: dishesArr, meals: meals });
   });
 })
 

@@ -1,6 +1,9 @@
 extends ./layout.pug
 
 block content
+  datalist(id="dishesList")
+    each dish in dishes
+      option(cals=dish.cals fat=Number(dish.fat) carbs=Number(dish.carbs) protein=Number(dish.protein))=dish.name
   form(action="/" method="post")
     div(class="side-marg")
       table(id="meals" class="table table-sm")

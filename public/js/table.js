@@ -50,13 +50,9 @@ function getMeals() {
 
 function addRow() {
     let container = document.getElementById("container");
+    let index = container.children.length;
     let row = document.createElement('tr');
     row.setAttribute('_id', -1);
-
-    //var headerCell = document.createElement("TH");
-    //headerCell.innerHTML = "19:00";
-    //headerCell.setAttribute('scope', 'row');
-    //row.appendChild(headerCell);
 
     let cell1 = document.createElement('TD');
     let inp1 = document.createElement('INPUT');
@@ -65,20 +61,21 @@ function addRow() {
     cell1.appendChild(inp1);
     row.appendChild(cell1);
 
-    var jsonStr = getMeals();
-    var meals = JSON.parse(jsonStr);
+    //var jsonStr = getMeals();
+    //var meals = JSON.parse(jsonStr);
     var cell2 = document.createElement("TD");
     var input = document.createElement('input');
     input.setAttribute('name', 'name');
-    input.setAttribute('list', 'mealsList');
+    input.setAttribute('list', 'dishesListN');
     cell2.appendChild(input);
-    var datalist = document.createElement('datalist');
-    datalist.setAttribute('id', 'mealsList');
-    for (i = 0; i < meals.meals.length; i++) {
-        var option = document.createElement('option');
-        option.setAttribute('value', meals.meals[i].name);
-        datalist.appendChild(option);
-    };
+    //var datalist = document.createElement('datalist');
+    let datalist = document.getElementById('dishesList').cloneNode(true);
+    datalist.setAttribute('id', 'dishesListN');
+    //for (i = 0; i < meals.meals.length; i++) {
+    //    var option = document.createElement('option');
+    //    option.setAttribute('value', meals.meals[i].name);
+    //    datalist.appendChild(option);
+    //};
     cell2.appendChild(datalist);
     row.appendChild(cell2);
 
