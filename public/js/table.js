@@ -38,14 +38,31 @@ function calculatePercents() {
     document.getElementById(`proteinPercent`).innerHTML = `${proteinPercent.toFixed(0)}%`;
 }
 
-function getMeals() {
-    var meals = '{"meals": [' +
-        '{ "name": "Chicken", "cals": 248, "fat": 6.0, "carbs": 0.0, "protein": 46.5},' +
-        '{ "name": "Pork", "cals": 221, "fat": 6.8, "carbs": 0.0, "protein": 39.0},' +
-        '{ "name": "Mixed Vegetables", "cals": 59, "fat": 0.0, "carbs": 11.8, "protein": 2.4},' +
-        '{ "name": "Oats & Berries", "cals": 288, "fat": 3.8, "carbs": 61.4, "protein": 8.1}]}';
+function fillValues(index) {
+    let sel = document.getElementById(`name${index}`);
+    let list = document.getElementById(`dishesList${index}`);
+    let cals = 0;
+    let fat = 0;
+    let carbs = 0;
+    let protein = 0;
 
-    return meals;
+    for (i = 0; i < list.options.length; i++) {
+        console.log(list.options[i].value);
+        console.log(sel.value);
+        if (list.options[i].value === sel.value) {            
+            cals = Number(list.options[i].getAttribute('cals'));
+            fat = Number(list.options[i].getAttribute('fat'));
+            carbs = Number(list.options[i].getAttribute('carbs'));
+            protein = Number(list.options[i].getAttribute('protein'));
+            break;
+        }
+    }
+    document.getElementById(`cals${index}`).value = cals;
+    document.getElementById(`fat${index}`).value = fat;
+    document.getElementById(`carbs${index}`).value = carbs;
+    document.getElementById(`protein${index}`).value = protein;
+
+    calculateTotals();
 }
 
 function addRow() {
@@ -56,31 +73,27 @@ function addRow() {
 
     let cell1 = document.createElement('TD');
     let inp1 = document.createElement('INPUT');
+    inp1.setAttribute('id', `time${index}`);
     inp1.setAttribute('name', 'time');
     inp1.setAttribute('type', 'time');
     cell1.appendChild(inp1);
     row.appendChild(cell1);
 
-    //var jsonStr = getMeals();
-    //var meals = JSON.parse(jsonStr);
     var cell2 = document.createElement("TD");
     var input = document.createElement('input');
+    input.setAttribute('id', `name${index}`);
     input.setAttribute('name', 'name');
-    input.setAttribute('list', 'dishesListN');
+    input.setAttribute('list', `dishesList${index}`);
+    input.setAttribute('onchange', `fillValues(${index})`);
     cell2.appendChild(input);
-    //var datalist = document.createElement('datalist');
     let datalist = document.getElementById('dishesList').cloneNode(true);
-    datalist.setAttribute('id', 'dishesListN');
-    //for (i = 0; i < meals.meals.length; i++) {
-    //    var option = document.createElement('option');
-    //    option.setAttribute('value', meals.meals[i].name);
-    //    datalist.appendChild(option);
-    //};
+    datalist.setAttribute('id', `dishesList${index}`);
     cell2.appendChild(datalist);
     row.appendChild(cell2);
 
     var cell3 = document.createElement("TD");
     var inp3 = document.createElement('INPUT');
+    inp3.setAttribute('id', `cals${index}`);
     inp3.setAttribute('name', 'cals');
     inp3.setAttribute('type', 'text');
     inp3.setAttribute('value', '0.0');
@@ -90,6 +103,7 @@ function addRow() {
     row.appendChild(cell3);
     var cell4 = document.createElement("TD");
     var inp4 = document.createElement('INPUT');
+    inp4.setAttribute('id', `fat${index}`);
     inp4.setAttribute('name', 'fat');
     inp4.setAttribute('type', 'text');
     inp4.setAttribute('value', '0.0');
@@ -99,6 +113,7 @@ function addRow() {
     row.appendChild(cell4);
     var cell5 = document.createElement("TD");
     var inp5 = document.createElement('INPUT');
+    inp5.setAttribute('id', `carbs${index}`);
     inp5.setAttribute('name', 'carbs');
     inp5.setAttribute('type', 'text');
     inp5.setAttribute('value', '0.0');
@@ -108,6 +123,7 @@ function addRow() {
     row.appendChild(cell5);
     var cell6 = document.createElement("TD");
     var inp6 = document.createElement('INPUT');
+    inp6.setAttribute('id', `protein${index}`);
     inp6.setAttribute('name', 'protein');
     inp6.setAttribute('type', 'text');
     inp6.setAttribute('value', '0.0');
