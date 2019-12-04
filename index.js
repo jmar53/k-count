@@ -41,10 +41,10 @@ app.post('/', urlencodedParser, (req, res) => {
 
   if (req.body.name !== undefined) {
     if (typeof (req.body.name) === 'string') {
-      newMeals[0] = { date: date, time: time, name: req.body.name, cals: req.body.cals, fat: req.body.fat, carbs: req.body.carbs, protein: req.body.protein };
+      newMeals[0] = { date: date, time: req.body.time, name: req.body.name, cals: req.body.cals, fat: req.body.fat, carbs: req.body.carbs, protein: req.body.protein };
     } else {
       for (i = 0; i < req.body.name.length; i++) {
-        newMeals[i] = { date: date, time: time, name: req.body.name[i], cals: req.body.cals[i], fat: req.body.fat[i], carbs: req.body.carbs[i], protein: req.body.protein[i] };
+        newMeals[i] = { date: date, time: req.body.time[i], name: req.body.name[i], cals: req.body.cals[i], fat: req.body.fat[i], carbs: req.body.carbs[i], protein: req.body.protein[i] };
       }
     }
 

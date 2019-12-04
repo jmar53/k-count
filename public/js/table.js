@@ -53,10 +53,17 @@ function addRow() {
     let row = document.createElement('tr');
     row.setAttribute('_id', -1);
 
-    var headerCell = document.createElement("TH");
-    headerCell.innerHTML = "19:00";
-    headerCell.setAttribute('scope', 'row');
-    row.appendChild(headerCell);
+    //var headerCell = document.createElement("TH");
+    //headerCell.innerHTML = "19:00";
+    //headerCell.setAttribute('scope', 'row');
+    //row.appendChild(headerCell);
+
+    let cell1 = document.createElement('TD');
+    let inp1 = document.createElement('INPUT');
+    inp1.setAttribute('name', 'time');
+    inp1.setAttribute('type', 'time');
+    cell1.appendChild(inp1);
+    row.appendChild(cell1);
 
     var jsonStr = getMeals();
     var meals = JSON.parse(jsonStr);
