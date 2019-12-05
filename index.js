@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
+require('dotenv').config(); 
 const IngredientModel = require('./models/ingredient.model');
 const DishModel = require('./models/dish.model');
 const MealModel = require('./models/meals.model');
@@ -13,10 +14,11 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));
 app.use(urlencodedParser);
 
-var mongoDB = 'mongodb://127.0.0.1/nutrition';
+//var mongoDB = 'mongodb://127.0.0.1/nutrition';
 //const dbUser = process.env.DBUSER;
 //const dbPword = process.env.DBPWORD;
 //let mongoDB = `mongodb+srv://${dbUser}:${dbPword}@cluster0-stxlu.mongodb.net/nutrition?retryWrites=true&w=majority`;
+let mongoDB = process.env.DB_STRING;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
