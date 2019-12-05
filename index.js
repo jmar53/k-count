@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-require('dotenv').config(); 
+require('dotenv').config();
 const IngredientModel = require('./models/ingredient.model');
 const DishModel = require('./models/dish.model');
 const MealModel = require('./models/meals.model');
@@ -14,8 +14,8 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));
 app.use(urlencodedParser);
 
-//var mongoDB = 'mongodb://127.0.0.1/nutrition';
-let mongoDB = process.env.DB_STRING;
+var mongoDB = 'mongodb://127.0.0.1/nutrition';
+//let mongoDB = process.env.DB_STRING;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -29,9 +29,27 @@ date.setMilliseconds(0);
 app.get('/', (req, res) => {
   let dishesArr = [];
   DishModel.find({}).exec((err, dishes) => {
-    dishesArr = dishes;
+    dishesArr = dishes.sort(function (a, b) {
+      let name1 = a.name.toLowerCase();
+      let name2 = b.name.toLowerCase();
+      if (name1 < name2)
+        return -1
+      if (name1 > name2)
+        return 1
+      return 0
+    });
   });
+
   MealModel.find({}).where('date').equals(date).exec((err, meals) => {
+    meals = meals.sort(function (a, b) {
+      let name1 = a.time;
+      let name2 = b.time;
+      if (name1 < name2)
+        return -1
+      if (name1 > name2)
+        return 1
+      return 0
+    });
     res.render('meals', { date: date.toDateString(), dishes: dishesArr, meals: meals });
   });
 })
@@ -39,8 +57,6 @@ app.get('/', (req, res) => {
 app.post('/', urlencodedParser, (req, res) => {
   // Build the JSON of added meals
   let newMeals = [];
-
-  const time = '12:20';
 
   if (req.body.name !== undefined) {
     if (typeof (req.body.name) === 'string') {
@@ -85,25 +101,6 @@ app.get('/dish', (req, res) => {
 })
 
 app.post('/dish', urlencodedParser, (req, res) => {
-  /*** If saving multiple ingredients to one dish name:
-  let bodyArray = Object.values(req.body);
-  let dishName = bodyArray.shift();
-
-  for(i=0;i<bodyArray.length;i+=6) {
-    const dishJSON = {
-      name: dishName,
-      ingredient_name: bodyArray[i],
-      amount: bodyArray[i+1],
-      cals: bodyArray[i+2],
-      fat: bodyArray[i+3],
-      carbs: bodyArray[i+4],
-      protein: bodyArray[i+5]
-    }
-    console.log(dishJSON)
-  }
-  res.redirect('/dish');
-  ***/
-
   const dishJSON = {
     name: req.body.name,
     cals: req.body.calsTotal,
