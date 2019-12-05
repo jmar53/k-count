@@ -18,9 +18,9 @@ function calculateTotals() {
         }
     }
     document.getElementById('calsTotal').innerHTML = calsTotal.toFixed(0);
-    document.getElementById('fatTotal').innerHTML = fatTotal.toFixed(2);
-    document.getElementById('carbsTotal').innerHTML = carbsTotal.toFixed(2);
-    document.getElementById('proteinTotal').innerHTML = proteinTotal.toFixed(2);
+    document.getElementById('fatTotal').innerHTML = fatTotal.toFixed(1);
+    document.getElementById('carbsTotal').innerHTML = carbsTotal.toFixed(1);
+    document.getElementById('proteinTotal').innerHTML = proteinTotal.toFixed(1);
 
     calculatePercents();
 }
