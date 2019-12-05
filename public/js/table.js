@@ -17,10 +17,10 @@ function calculateTotals() {
             proteinTotal += Number(rows.children[i].children[5].children[0].value);
         }
     }
-    document.getElementById('calsTotal').innerHTML = calsTotal;
-    document.getElementById('fatTotal').innerHTML = fatTotal;
-    document.getElementById('carbsTotal').innerHTML = carbsTotal;
-    document.getElementById('proteinTotal').innerHTML = proteinTotal;
+    document.getElementById('calsTotal').innerHTML = calsTotal.toFixed(0);
+    document.getElementById('fatTotal').innerHTML = fatTotal.toFixed(2);
+    document.getElementById('carbsTotal').innerHTML = carbsTotal.toFixed(2);
+    document.getElementById('proteinTotal').innerHTML = proteinTotal.toFixed(2);
 
     calculatePercents();
 }
@@ -47,8 +47,6 @@ function fillValues(index) {
     let protein = 0;
 
     for (i = 0; i < list.options.length; i++) {
-        console.log(list.options[i].value);
-        console.log(sel.value);
         if (list.options[i].value === sel.value) {            
             cals = Number(list.options[i].getAttribute('cals'));
             fat = Number(list.options[i].getAttribute('fat'));

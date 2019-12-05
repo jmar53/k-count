@@ -21,10 +21,10 @@ block content
             tr(_id=meal._id)
               th(scope="row" value=meal.time)=meal.time
               td(value=meal.name)=meal.name
-              td(value=meal.cals)=meal.cals
-              td(value=meal.fat)=meal.fat
-              td(value=meal.carbs)=meal.carbs
-              td(value=meal.protein)=meal.protein
+              td(value=meal.cals)=meal.cals.toFixed(0)
+              td(value=meal.fat)=Number(meal.fat).toFixed(2)
+              td(value=meal.carbs)=Number(meal.carbs).toFixed(2)
+              td(value=meal.protein)=Number(meal.protein).toFixed(2)
         tfoot
           tr(class="totals")
             th(scope="row") Totals
