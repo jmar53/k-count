@@ -15,9 +15,6 @@ app.use(express.static('public'));
 app.use(urlencodedParser);
 
 //var mongoDB = 'mongodb://127.0.0.1/nutrition';
-//const dbUser = process.env.DBUSER;
-//const dbPword = process.env.DBPWORD;
-//let mongoDB = `mongodb+srv://${dbUser}:${dbPword}@cluster0-stxlu.mongodb.net/nutrition?retryWrites=true&w=majority`;
 let mongoDB = process.env.DB_STRING;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
