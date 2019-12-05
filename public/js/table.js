@@ -133,3 +133,7 @@ function addRow() {
     row.appendChild(cell6);
     container.appendChild(row);
 }
+
+window.onload = function(){
+    this.calculateTotals();
+}

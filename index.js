@@ -55,7 +55,6 @@ app.post('/', urlencodedParser, (req, res) => {
     }
 
     MealModel.insertMany(newMeals, function (err) {
-      //res.redirect('/');
     });
   }
   res.redirect('/');
