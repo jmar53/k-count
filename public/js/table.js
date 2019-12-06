@@ -55,10 +55,10 @@ function fillValues(index) {
             break;
         }
     }
-    document.getElementById(`cals${index}`).value = cals;
-    document.getElementById(`fat${index}`).value = fat;
-    document.getElementById(`carbs${index}`).value = carbs;
-    document.getElementById(`protein${index}`).value = protein;
+    document.getElementById(`cals${index}`).value = cals.toFixed(0);
+    document.getElementById(`fat${index}`).value = fat.toFixed(1);
+    document.getElementById(`carbs${index}`).value = carbs.toFixed(1);
+    document.getElementById(`protein${index}`).value = protein.toFixed(1);
 
     calculateTotals();
 }
@@ -96,7 +96,7 @@ function addRow() {
     inp3.setAttribute('id', `cals${index}`);
     inp3.setAttribute('name', 'cals');
     inp3.setAttribute('type', 'text');
-    inp3.setAttribute('value', '0.0');
+    inp3.setAttribute('value', '0');
     inp3.setAttribute('size', '2');
     inp3.setAttribute('onchange', 'calculateTotals()');
     inp3.setAttribute('required', 'true');
