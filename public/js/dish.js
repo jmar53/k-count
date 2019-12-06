@@ -28,15 +28,15 @@ function calculateValues(index) {
 
 function calculateTotals() {
     let rows = document.getElementById('container');
-    let calsTotal = Number(rows.children[0].children[3].children[1].value);
-    let fatTotal = Number(rows.children[0].children[4].children[1].value);
-    let carbsTotal = Number(rows.children[0].children[5].children[1].value);
-    let proteinTotal = Number(rows.children[0].children[6].children[1].value);
+    let calsTotal = Number(rows.children[0].children[4].children[1].value);
+    let fatTotal = Number(rows.children[0].children[5].children[1].value);
+    let carbsTotal = Number(rows.children[0].children[6].children[1].value);
+    let proteinTotal = Number(rows.children[0].children[7].children[1].value);
     for(i=1;i<rows.children.length;i++) {
-        calsTotal += Number(rows.children[i].children[2].children[0].value);
-        fatTotal += Number(rows.children[i].children[3].children[0].value);
-        carbsTotal += Number(rows.children[i].children[4].children[0].value);
-        proteinTotal += Number(rows.children[i].children[5].children[0].value);
+        calsTotal += Number(rows.children[i].children[3].children[0].value);
+        fatTotal += Number(rows.children[i].children[4].children[0].value);
+        carbsTotal += Number(rows.children[i].children[5].children[0].value);
+        proteinTotal += Number(rows.children[i].children[6].children[0].value);
     }
     document.getElementById('calsTotal').setAttribute('value', calsTotal.toFixed(0));
     document.getElementById('fatTotal').setAttribute('value', fatTotal.toFixed(1));
