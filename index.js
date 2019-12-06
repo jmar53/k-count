@@ -96,6 +96,15 @@ app.post('/ingredient', urlencodedParser, (req, res) => {
 
 app.get('/dish', (req, res) => {
   IngredientModel.find({}).exec((err, ingredients) => {
+    ingredients = ingredients.sort(function (a, b) {
+      let name1 = a.name.toLowerCase();
+      let name2 = b.name.toLowerCase();
+      if (name1 < name2)
+        return -1
+      if (name1 > name2)
+        return 1
+      return 0
+    });
     res.render('dish', { ingredients: ingredients });
   });
 })
