@@ -4,8 +4,9 @@ block content
   form(class="center" action="/dish" method="post")
     h2 Dish
     div(id="container")
-      div(class="form-row align-dish-row1")
-        div(class="form-group col-md-2")
+      div(class="form-row")
+        div(class="form-group col-md-1")
+        div(class="form-group col-md-3")
           label(for='name') Name
           input(type='text' id='name' name='name' class="form-control" placeholder='Name' required)
         div(class="form-group col-md-2")
@@ -29,12 +30,18 @@ block content
         div(class="form-group col-md-1")
           label(for='protein0') Protein
           input(type='text' id='protein0' name='protein0' class="form-control" value=0 required)
-    div(id="totals")
-      label Totals:
-      input(type='text' id='calsTotal' name='calsTotal' value=0 disabled required)
-      input(type='text' id='fatTotal' name='fatTotal' value=0 disabled required)
-      input(type='text' id='carbsTotal' name='carbsTotal' disabled value=0 required)
-      input(type='text' id='proteinTotal' name='proteinTotal' disabled value=0 required)
+        div(class="form-group col-md-1")
+    div(id="totals" class="form-row")
+      div(class="form-group col-md-7 dish-totals") Totals:&nbsp;
+      div(class="form-group col-md-1")
+        input(type='text' id='calsTotal' class="form-control" name='calsTotal' value=0 disabled required)
+      div(class="form-group col-md-1")
+        input(type='text' id='fatTotal' class="form-control" name='fatTotal' value=0 disabled required)
+      div(class="form-group col-md-1")
+        input(type='text' id='carbsTotal' class="form-control" name='carbsTotal' disabled value=0 required)
+      div(class="form-group col-md-1")
+        input(type='text' id='proteinTotal' class="form-control" name='proteinTotal' disabled value=0 required)
+      div(class="form-group col-md-1")
     br
     div
       button(class="btn btn-dark" type="button" onclick="addRow()") Add Dish

@@ -1,9 +1,7 @@
 .center {
     margin: auto;
-    width: 90%;
+    width: 100%;
     text-align: center;
-    /*border: 3px solid green;
-    padding: 10px;*/
 }
 .align-dish-row1 {
     margin-left: 225px;
@@ -29,7 +27,10 @@ caption {
     font-weight: 600;
     color: #212529;
 }
-
+.dish-totals {
+    text-align: right;
+    font-weight: bold;
+}
 .totals {
     border-top: 3px solid #dee2e6;
     border-bottom: 3px solid #dee2e6;
