@@ -14,8 +14,8 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));
 app.use(urlencodedParser);
 
-var mongoDB = 'mongodb://127.0.0.1/nutrition';
-//let mongoDB = process.env.DB_STRING;
+//var mongoDB = 'mongodb://127.0.0.1/nutrition';
+let mongoDB = process.env.DB_STRING;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
