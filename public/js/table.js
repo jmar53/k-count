@@ -74,6 +74,7 @@ function addRow() {
     inp1.setAttribute('id', `time${index}`);
     inp1.setAttribute('name', 'time');
     inp1.setAttribute('type', 'time');
+    inp1.setAttribute('required', 'true');
     cell1.appendChild(inp1);
     row.appendChild(cell1);
 
@@ -83,6 +84,7 @@ function addRow() {
     input.setAttribute('name', 'name');
     input.setAttribute('list', `dishesList${index}`);
     input.setAttribute('onchange', `fillValues(${index})`);
+    input.setAttribute('required', 'true');
     cell2.appendChild(input);
     let datalist = document.getElementById('dishesList').cloneNode(true);
     datalist.setAttribute('id', `dishesList${index}`);
@@ -97,6 +99,7 @@ function addRow() {
     inp3.setAttribute('value', '0.0');
     inp3.setAttribute('size', '2');
     inp3.setAttribute('onchange', 'calculateTotals()');
+    inp3.setAttribute('required', 'true');
     cell3.appendChild(inp3);
     row.appendChild(cell3);
     var cell4 = document.createElement("TD");
@@ -107,6 +110,7 @@ function addRow() {
     inp4.setAttribute('value', '0.0');
     inp4.setAttribute('size', '2');
     inp4.setAttribute('onchange', 'calculateTotals()');
+    inp4.setAttribute('required', 'true');
     cell4.appendChild(inp4);
     row.appendChild(cell4);
     var cell5 = document.createElement("TD");
@@ -117,6 +121,7 @@ function addRow() {
     inp5.setAttribute('value', '0.0');
     inp5.setAttribute('size', '2');
     inp5.setAttribute('onchange', 'calculateTotals()');
+    inp5.setAttribute('required', 'true');
     cell5.appendChild(inp5);
     row.appendChild(cell5);
     var cell6 = document.createElement("TD");
@@ -127,6 +132,7 @@ function addRow() {
     inp6.setAttribute('value', '0.0');
     inp6.setAttribute('size', '2');
     inp6.setAttribute('onchange', 'calculateTotals()');
+    inp6.setAttribute('required', 'true');
     cell6.appendChild(inp6);
     row.appendChild(cell6);
     container.appendChild(row);

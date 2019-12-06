@@ -7,34 +7,34 @@ block content
       div(class="form-row align-dish-row1")
         div(class="form-group col-md-2")
           label(for='name') Name
-          input(type='text' id='name' name='name' class="form-control" placeholder='Name')
+          input(type='text' id='name' name='name' class="form-control" placeholder='Name' required)
         div(class="form-group col-md-2")
           label(for='ingredient0') Ingredient
-          select(id='ingredient0' name='ingredient0' class="form-control" onchange='calculateValues(0)')
-            option(selected) Choose...
+          select(id='ingredient0' name='ingredient0' class="form-control" onchange='calculateValues(0)' required)
+            option(selected value="") Choose...
             each ingredient in ingredients
               option(per=ingredient.per cals=ingredient.cals fat=Number(ingredient.fat) carbs=Number(ingredient.carbs) protein=Number(ingredient.protein).toString())=ingredient.name
         div(class="form-group col-md-1")
           label(for='amount0') Amount
-          input(type='text' id='amount0' name='amount0' class="form-control" onblur="calculateValues(0)" value=0)
+          input(type='text' id='amount0' name='amount0' class="form-control" onblur="calculateValues(0)" value=0 required)
         div(class="form-group col-md-1")
           label(for='cals0') Calories
-          input(type='text' id='cals0' name='cals0' class="form-control" value=0)
+          input(type='text' id='cals0' name='cals0' class="form-control" value=0 required)
         div(class="form-group col-md-1")
           label(for='fat0') Fat
-          input(type='text' id='fat0' name='fat0' class="form-control" value=0)
+          input(type='text' id='fat0' name='fat0' class="form-control" value=0 required)
         div(class="form-group col-md-1")
           label(for='carbs0') Carbs
-          input(type='text' id='carbs0' name='carbs0' class="form-control" value=0)
+          input(type='text' id='carbs0' name='carbs0' class="form-control" value=0 required)
         div(class="form-group col-md-1")
           label(for='protein0') Protein
-          input(type='text' id='protein0' name='protein0' class="form-control" value=0)
+          input(type='text' id='protein0' name='protein0' class="form-control" value=0 required)
     div(id="totals")
       label Totals:
-      input(type='text' id='calsTotal' name='calsTotal' value=0)
-      input(type='text' id='fatTotal' name='fatTotal' value=0)
-      input(type='text' id='carbsTotal' name='carbsTotal' value=0)
-      input(type='text' id='proteinTotal' name='proteinTotal' value=0)
+      input(type='text' id='calsTotal' name='calsTotal' value=0 disabled required)
+      input(type='text' id='fatTotal' name='fatTotal' value=0 disabled required)
+      input(type='text' id='carbsTotal' name='carbsTotal' disabled value=0 required)
+      input(type='text' id='proteinTotal' name='proteinTotal' disabled value=0 required)
     br
     div
       button(class="btn btn-dark" type="button" onclick="addRow()") Add Dish

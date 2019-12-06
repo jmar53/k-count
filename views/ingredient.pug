@@ -6,22 +6,22 @@ block content
     div(class="form-row align-ingredient")
       div(class="form-group col-md-2")
         label(for='name') Name
-        input(type='text' id='name' name='name' class="form-control" placeholder='Name')
+        input(type='text' id='name' name='name' class="form-control" placeholder='Name' required)
       div(class="form-group col-md-1")
         label(for='amount') Amount
-        input(type='text' id='amount' name='amount' class="form-control" placeholder=0)
+        input(type='text' id='amount' name='amount' class="form-control" placeholder=0 required)
       div(class="form-group col-md-1")
         label(for='cals') Calories
-        input(type='text' id='cals' name='cals' class="form-control" placeholder=0)
+        input(type='text' id='cals' name='cals' class="form-control" placeholder=0 required)
       div(class="form-group col-md-1")
         label(for='fat') Fat
-        input(type='text' id='fat' name='fat' class="form-control" placeholder=0)
+        input(type='text' id='fat' name='fat' class="form-control" placeholder=0 required)
       div(class="form-group col-md-1")
         label(for='carbs') Carbs
-        input(type='text' id='carbs' name='carbs' class="form-control" placeholder=0)
+        input(type='text' id='carbs' name='carbs' class="form-control" placeholder=0 required)
       div(class="form-group col-md-1")
         label(for='protein') Protein
-        input(type='text' id='protein' name='protein' class="form-control" placeholder=0)
+        input(type='text' id='protein' name='protein' class="form-control" placeholder=0 required)
     br
     div
       button(class="btn btn-dark") Add Ingredient
