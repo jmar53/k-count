@@ -18,10 +18,10 @@ function calculateValues(index) {
         protein = sel.options[sel.selectedIndex].getAttribute('protein');
         protein = amount / per * protein;
     }
-    document.getElementById(`cals${index}`).value = cals;
-    document.getElementById(`fat${index}`).value = fat;
-    document.getElementById(`carbs${index}`).value = carbs;
-    document.getElementById(`protein${index}`).value = protein;
+    document.getElementById(`cals${index}`).value = cals.toFixed(0);
+    document.getElementById(`fat${index}`).value = fat.toFixed(1);
+    document.getElementById(`carbs${index}`).value = carbs.toFixed(1);
+    document.getElementById(`protein${index}`).value = protein.toFixed(1);
 
     calculateTotals();
 }
@@ -38,10 +38,10 @@ function calculateTotals() {
         carbsTotal += Number(rows.children[i].children[4].children[0].value);
         proteinTotal += Number(rows.children[i].children[5].children[0].value);
     }
-    document.getElementById('calsTotal').setAttribute('value', calsTotal);
-    document.getElementById('fatTotal').setAttribute('value', fatTotal);
-    document.getElementById('carbsTotal').setAttribute('value', carbsTotal);
-    document.getElementById('proteinTotal').setAttribute('value', proteinTotal);
+    document.getElementById('calsTotal').setAttribute('value', calsTotal.toFixed(0));
+    document.getElementById('fatTotal').setAttribute('value', fatTotal.toFixed(1));
+    document.getElementById('carbsTotal').setAttribute('value', carbsTotal.toFixed(1));
+    document.getElementById('proteinTotal').setAttribute('value', proteinTotal.toFixed(1));
 }
 
 function addRow() {
