@@ -95,7 +95,8 @@ function addRow() {
     var inp3 = document.createElement('INPUT');
     inp3.setAttribute('id', `cals${index}`);
     inp3.setAttribute('name', 'cals');
-    inp3.setAttribute('type', 'text');
+    inp3.setAttribute('type', 'number');
+    inp3.setAttribute('step', .1);
     inp3.setAttribute('value', '0');
     inp3.setAttribute('size', '2');
     inp3.setAttribute('onchange', 'calculateTotals()');
@@ -106,7 +107,8 @@ function addRow() {
     var inp4 = document.createElement('INPUT');
     inp4.setAttribute('id', `fat${index}`);
     inp4.setAttribute('name', 'fat');
-    inp4.setAttribute('type', 'text');
+    inp4.setAttribute('type', 'number');
+    inp4.setAttribute('step', .1);
     inp4.setAttribute('value', '0.0');
     inp4.setAttribute('size', '2');
     inp4.setAttribute('onchange', 'calculateTotals()');
@@ -117,7 +119,8 @@ function addRow() {
     var inp5 = document.createElement('INPUT');
     inp5.setAttribute('id', `carbs${index}`);
     inp5.setAttribute('name', 'carbs');
-    inp5.setAttribute('type', 'text');
+    inp5.setAttribute('type', 'number');
+    inp5.setAttribute('step', .1);
     inp5.setAttribute('value', '0.0');
     inp5.setAttribute('size', '2');
     inp5.setAttribute('onchange', 'calculateTotals()');
@@ -128,7 +131,8 @@ function addRow() {
     var inp6 = document.createElement('INPUT');
     inp6.setAttribute('id', `protein${index}`);
     inp6.setAttribute('name', 'protein');
-    inp6.setAttribute('type', 'text');
+    inp6.setAttribute('type', 'number');
+    inp6.setAttribute('step', .1);
     inp6.setAttribute('value', '0.0');
     inp6.setAttribute('size', '2');
     inp6.setAttribute('onchange', 'calculateTotals()');

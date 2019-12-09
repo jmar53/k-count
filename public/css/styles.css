@@ -7,6 +7,9 @@
     margin: auto;
     width: 15%;
 }
+.side-marg {
+    margin: 0px 75px;
+}
 caption {
     caption-side: top;
     font-weight: 600;
