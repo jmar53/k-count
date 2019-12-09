@@ -3,8 +3,9 @@ extends ./layout.pug
 block content
   form(class="center" action="/ingredient" method="post")
     h2 Ingredient
-    div(class="form-row align-ingredient")
+    div(class="form-row")
       div(class="form-group col-md-2")
+      div(class="form-group col-md-3")
         label(for='name') Name
         input(type='text' id='name' name='name' class="form-control" placeholder='Name' required)
       div(class="form-group col-md-1")
@@ -22,6 +23,7 @@ block content
       div(class="form-group col-md-1")
         label(for='protein') Protein
         input(type='text' id='protein' name='protein' class="form-control" placeholder=0 required)
+      div(class="form-group col-md-2")
     br
     div
       button(class="btn btn-dark") Add Ingredient
