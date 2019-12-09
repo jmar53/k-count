@@ -63,6 +63,10 @@ function fillValues(index) {
     calculateTotals();
 }
 
+function testFunc() {
+    window.location.replace(`/${document.getElementById('date').value}`);
+}
+
 function addRow() {
     let container = document.getElementById("container");
     let index = container.children.length;

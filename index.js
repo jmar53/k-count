@@ -14,19 +14,40 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));
 app.use(urlencodedParser);
 
-//var mongoDB = 'mongodb://127.0.0.1/nutrition';
 let mongoDB = process.env.DB_STRING;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-let date = new Date();
-date.setHours(0);
-date.setMinutes(0);
-date.setSeconds(0);
-date.setMilliseconds(0);
-
 app.get('/', (req, res) => {
+  let date = new Date();
+  res.redirect(`/${date.toISOString().substr(0,10)}`);
+})
+
+app.get('/ingredient', (req, res) => {
+  res.render('ingredient');
+})
+
+app.get('/dish', (req, res) => {
+  IngredientModel.find({}).exec((err, ingredients) => {
+    ingredients = ingredients.sort(function (a, b) {
+      let name1 = a.name.toLowerCase();
+      let name2 = b.name.toLowerCase();
+      if (name1 < name2)
+        return -1
+      if (name1 > name2)
+        return 1
+      return 0
+    });
+    res.render('dish', { ingredients: ingredients });
+  });
+})
+
+app.get('/:date', (req, res) => {
+  let date = new Date(req.params.date);
+  let dateEnd = new Date(req.params.date);
+  dateEnd.setDate(date.getDate() + 1);
+
   let dishesArr = [];
   DishModel.find({}).exec((err, dishes) => {
     dishesArr = dishes.sort(function (a, b) {
@@ -40,7 +61,7 @@ app.get('/', (req, res) => {
     });
   });
 
-  MealModel.find({}).where('date').equals(date).exec((err, meals) => {
+  MealModel.find({"date": {"$gte": date, "$lt": dateEnd}}).exec((err, meals) => {
     meals = meals.sort(function (a, b) {
       let name1 = a.time;
       let name2 = b.time;
@@ -50,9 +71,9 @@ app.get('/', (req, res) => {
         return 1
       return 0
     });
-    res.render('meals', { date: date.toDateString(), dishes: dishesArr, meals: meals });
+    res.render('meals', { date: req.params.date, dishes: dishesArr, meals: meals });
   });
-})
+});
 
 app.post('/', urlencodedParser, (req, res) => {
   // Build the JSON of added meals
@@ -60,21 +81,17 @@ app.post('/', urlencodedParser, (req, res) => {
 
   if (req.body.name !== undefined) {
     if (typeof (req.body.name) === 'string') {
-      newMeals[0] = { date: date, time: req.body.time, name: req.body.name, cals: req.body.cals, fat: req.body.fat, carbs: req.body.carbs, protein: req.body.protein };
+      newMeals[0] = { date: req.body.date, time: req.body.time, name: req.body.name, cals: req.body.cals, fat: req.body.fat, carbs: req.body.carbs, protein: req.body.protein };
     } else {
       for (i = 0; i < req.body.name.length; i++) {
-        newMeals[i] = { date: date, time: req.body.time[i], name: req.body.name[i], cals: req.body.cals[i], fat: req.body.fat[i], carbs: req.body.carbs[i], protein: req.body.protein[i] };
+        newMeals[i] = { date: req.body.date, time: req.body.time[i], name: req.body.name[i], cals: req.body.cals[i], fat: req.body.fat[i], carbs: req.body.carbs[i], protein: req.body.protein[i] };
       }
     }
 
     MealModel.insertMany(newMeals, function (err) {
     });
   }
-  res.redirect('/');
-})
-
-app.get('/ingredient', (req, res) => {
-  res.render('ingredient');
+  res.redirect(`/${req.body.date}`);
 })
 
 app.post('/ingredient', urlencodedParser, (req, res) => {
@@ -92,21 +109,6 @@ app.post('/ingredient', urlencodedParser, (req, res) => {
   });
 
   res.redirect('/ingredient');
-})
-
-app.get('/dish', (req, res) => {
-  IngredientModel.find({}).exec((err, ingredients) => {
-    ingredients = ingredients.sort(function (a, b) {
-      let name1 = a.name.toLowerCase();
-      let name2 = b.name.toLowerCase();
-      if (name1 < name2)
-        return -1
-      if (name1 > name2)
-        return 1
-      return 0
-    });
-    res.render('dish', { ingredients: ingredients });
-  });
 })
 
 app.post('/dish', urlencodedParser, (req, res) => {
