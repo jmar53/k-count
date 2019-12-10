@@ -1,6 +1,8 @@
 # k-count
 An application to count daily calorie consumption. Users add the foods they eat. The application displays the daily breakdown of calories, fat, carbohydrates, and protein consumed. 
 
+Application Website: https://agile-savannah-53997.herokuapp.com
+
 ## Screen Sketches
 **Main Screen**
 ![Main Screen](resources/img/main-sketch.jpg)
