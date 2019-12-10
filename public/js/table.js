@@ -63,7 +63,7 @@ function fillValues(index) {
     calculateTotals();
 }
 
-function testFunc() {
+function dateChange() {
     window.location.replace(`/${document.getElementById('date').value}`);
 }
 

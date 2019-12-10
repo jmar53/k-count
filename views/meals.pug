@@ -6,7 +6,7 @@ block content
       option(cals=dish.cals fat=Number(dish.fat) carbs=Number(dish.carbs) protein=Number(dish.protein))=dish.name
   form(action="/" method="post")
     div(class="side-marg")
-      input(id="date" name="date" type="date" value=date onchange='testFunc()')
+      input(id="date" name="date" type="date" value=date onchange='dateChange()')
       br
       table(id="meals" class="table table-sm")
         thead

@@ -20,9 +20,10 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.get('/', (req, res) => {
-  let tzoffset = (new Date()).getTimezoneOffset() * 60000;
-  let date = (new Date(Date.now() - tzoffset)).toISOString().substr(0, 10);
-  res.redirect(`${date}`)
+  //let tzoffset = (new Date()).getTimezoneOffset() * 60000;
+  //let date = (new Date(Date.now() - tzoffset)).toISOString().substr(0, 10);
+  //res.redirect(`${date}`)
+  res.render('index');
 })
 
 app.get('/ingredient', (req, res) => {
