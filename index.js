@@ -21,6 +21,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.get('/', (req, res) => {
   let date = new Date();
+  //console.log(date.toLocaleDateString());
   res.redirect(`/${date.toISOString().substr(0,10)}`);
 })
 
