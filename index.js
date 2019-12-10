@@ -7,7 +7,7 @@ const DishModel = require('./models/dish.model');
 const MealModel = require('./models/meals.model');
 
 const app = express();
-const port = process.env.PORT || 3003;
+const port = process.env.PORT || 3000;
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.set('view engine', 'pug');
@@ -20,9 +20,9 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.get('/', (req, res) => {
-  let date = new Date();
-  //console.log(date.toLocaleDateString());
-  res.redirect(`/${date.toISOString().substr(0,10)}`);
+  let tzoffset = (new Date()).getTimezoneOffset() * 60000;
+  let date = (new Date(Date.now() - tzoffset)).toISOString().substr(0, 10);
+  res.redirect(`${date}`)
 })
 
 app.get('/ingredient', (req, res) => {
