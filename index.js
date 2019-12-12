@@ -47,38 +47,44 @@ app.get('/dish', async (req, res, next) => {
 })
 
 app.get('/:date', async (req, res, next) => {
-  try {
-    let date = new Date(req.params.date);
-    let dateEnd = new Date(req.params.date);
-    dateEnd.setDate(date.getDate() + 1);
+  if (req.params.date === 'favicon.ico') {
+    console.log('Request for favicon!');
+  }
+  else {
+    try {
+      let dateString = req.params.date + 'T00:00:00';
+      let date = new Date(dateString);
+      date.setDate(date.getDate() - 1);
+      let dateEnd = new Date(date);
+      dateEnd.setDate(date.getDate() + 1);
 
-    let dishesArr = [];
-    await DishModel.find({}).exec((err, dishes) => {
-      dishesArr = dishes.sort(function (a, b) {
-        let name1 = a.name.toLowerCase();
-        let name2 = b.name.toLowerCase();
-        if (name1 < name2)
-          return -1
-        if (name1 > name2)
-          return 1
-        return 0
+      let dishesArr = [];
+      await DishModel.find({}).exec((err, dishes) => {
+        dishesArr = dishes.sort(function (a, b) {
+          let name1 = a.name.toLowerCase();
+          let name2 = b.name.toLowerCase();
+          if (name1 < name2)
+            return -1
+          if (name1 > name2)
+            return 1
+          return 0
+        });
       });
-    });
-
-    await MealModel.find({ "date": { "$gte": date, "$lt": dateEnd } }).exec((err, meals) => {
-      meals = meals.sort(function (a, b) {
-        let name1 = a.time;
-        let name2 = b.time;
-        if (name1 < name2)
-          return -1
-        if (name1 > name2)
-          return 1
-        return 0
+      await MealModel.find({ "date": { "$gte": date, "$lt": dateEnd } }).exec((err, meals) => {
+        meals = meals.sort(function (a, b) {
+          let name1 = a.time;
+          let name2 = b.time;
+          if (name1 < name2)
+            return -1
+          if (name1 > name2)
+            return 1
+          return 0
+        });
+        res.render('meals', { date: req.params.date, dishes: dishesArr, meals: meals });
       });
-      res.render('meals', { date: req.params.date, dishes: dishesArr, meals: meals });
-    });
-  } catch (error) {
-    return next(error);
+    } catch (error) {
+      return next(error);
+    }
   }
 });
 
