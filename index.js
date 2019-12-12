@@ -54,7 +54,7 @@ app.get('/:date', async (req, res, next) => {
     try {
       let dateString = req.params.date + 'T00:00:00';
       let date = new Date(dateString);
-      date.setDate(date.getDate() - 1);
+      date.setDate(date.getDate());
       let dateEnd = new Date(date);
       dateEnd.setDate(date.getDate() + 1);
 
